@@ -94,3 +94,67 @@ The traveling salesperson is a classic problem in computer science, where a
 "salesperson" needs to visit "cities" and travel the fewest "miles." Solving it
 (perfectly) takes **O(n!)** time because we need to check every possible
 combination of city orders.
+
+
+### Selection Sort
+
+Selection sort is an **O(n²)** algorithm to sort an array. It works by
+iterating through the list to *select* the lowest (or highest) element and
+putting it in a new list.
+
+```python
+def findSmallest(arr):
+  smallest = arr[0]
+  smallest_index = 0
+  for i in range(1, len(arr)):
+    if arr[i] < smallest:
+      smallest = arr[i]
+      smallest_index = i
+  return smallest_index
+
+
+def selectionSort(arr):
+  newArr = []
+  copiedArr = list(arr) # copy array before mutating
+  for i in range(len(copiedArr)):
+      smallest = findSmallest(copiedArr)
+      newArr.append(copiedArr.pop(smallest))
+  return newArr
+
+
+print(selectionSort([5, 3, 6, 2, 10]))
+```
+
+
+### Quicksort
+
+Quicksort is an (average) **O(n log n)** algorithm to sort an array. It
+utilizes recursion to divide a list in half and sort the smaller copies.
+
+1. Pick a pivot
+2. Partition into two sub-arrays <= and > the pivot
+3. Call quicksort on the two sub-arrays
+4. Merge the results
+
+**Inductive proofs** are introduced here, which is very similar to recursion in
+that there is a *base case* and an *inductive case*.
+
+```py
+def quicksort(array):
+  if len(array) < 2:
+    return array
+  else:
+    pivot = array[0]
+    less = [i for i in array[1:] if i <= pivot]
+    greater = [i for i in array[1:] if i > pivot]
+    return quicksort(less) + [pivot] + quicksort(greater)
+
+
+print(quicksort([10, 5, 2, 3]))
+```
+
+On average, quicksort is an **O(n log n)** algorithm. In the worst case, it is
+**O(n²)** (such as a poorly chosen pivot on a sorted array, or an array with
+all of the same elements). The author compares quicksort with mergesort, which
+is also an **O(n log n)** algorithm, but it is usually slower because of the
+constants (which aren't written in big-O notation).

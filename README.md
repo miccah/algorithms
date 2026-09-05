@@ -10,6 +10,13 @@ Notes on the many algorithm books I recently acquired.
 
 ## Table of Contents
 
+* [Grokking Algorithms](#grokking-algorithms)
+    * [Binary Search](#binary-search)
+    * [Traveling Salesperson](#traveling-salesperson)
+    * [Selection Sort](#selection-sort)
+    * [Quicksort](#quicksort)
+    * [Hash tables](#hash-tables)
+
 
 ## Grokking Algorithms
 
@@ -158,3 +165,21 @@ On average, quicksort is an **O(n log n)** algorithm. In the worst case, it is
 all of the same elements). The author compares quicksort with mergesort, which
 is also an **O(n log n)** algorithm, but it is usually slower because of the
 constants (which aren't written in big-O notation).
+
+
+### Hash tables
+
+The book covers hash tables here and how they are **O(1)** on average for all
+types of access. It works by hashing the input to a consistent value for
+constant time lookup. It didn't go into too much detail about how they work
+under the hood, but the hash is used to index a linked-list, which the item
+gets added to.
+
+The *load factor* is the
+$\frac{number\ of\ items\ in\ hash}{total\ number\ of\ slots}$ and is used to
+resize the backing datastructure (typically when greater than $0.7$).
+
+The book also mentions [cityhash](https://github.com/google/cityhash) as a good
+hashing algorithm, although the repository was recently archived. Searching
+around revealed [xxHash](https://github.com/Cyan4973/xxHash) and
+[MurmurHash](https://en.wikipedia.org/wiki/MurmurHash) among others.

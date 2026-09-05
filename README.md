@@ -57,43 +57,6 @@ print(binary_search(my_list, 3))  # => 1
 print(binary_search(my_list, -1)) # => None
 ```
 
-#### Exercises
-
-> **1.1** Suppose you have a sorted list of 128 names, and you’re searching
-> through it using binary search. What’s the maximum number of steps it would
-> take?*
-
-`log₂(128) = 7`
-
-> **1.2** Suppose you double the size of the list. What’s the maximum number of
-> steps now?
-
-Each step reduces the search space by half, so if the initial search space is
-doubled, that's one more step.
-
-*1.3 through 1.6 are asking for the big O runtime.*
-
-> **1.3** You have a name, and you want to find the person’s phone number in
-> the phone book. What's the big O runtime?
-
-You can do a binary search, so **O(log n)**
-
-> **1.4** You have a phone number, and you want to find the person’s name in
-> the phone book. (Hint: You’ll have to search through the whole book!)
-
-Searching through the whole book is linear, or **O(n)**.
-
-> **1.5** You want to read the numbers of every person in the phone book.
-
-Going through the whole book is linear, or **O(n)**.
-
-> **1.6** You want to read the numbers of just the As. (This is a tricky one! It
-> involves concepts that are covered more in chapter 4. Read the answer—you may
-> be surprised!)
-
-The time still grows linearly, even if you don't go through the entire book, so
-**O(n)**.
-
 
 ### Traveling Salesperson
 

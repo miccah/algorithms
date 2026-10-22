@@ -16,6 +16,7 @@ Notes on the many algorithm books I recently acquired.
     * [Selection Sort](#selection-sort)
     * [Quicksort](#quicksort)
     * [Hash tables](#hash-tables)
+    * [Breadth first search](#breadth-first-search)
 
 
 ## Grokking Algorithms
@@ -146,3 +147,46 @@ The book also mentions [cityhash](https://github.com/google/cityhash) as a good
 hashing algorithm, although the repository was recently archived. Searching
 around revealed [xxHash](https://github.com/Cyan4973/xxHash) and
 [MurmurHash](https://en.wikipedia.org/wiki/MurmurHash) among others.
+
+
+### Breadth first search
+
+This section introduces graphs, which is a collection of nodes and edges. In
+the graph `A -> B`, `A` is an **in-neighbor** of `B` and `B` is an
+**out-neighbor** of `A`. In an undirected graph, they are simply **neighbors**.
+
+**Breadth first search** is an algorithm that finds if there is a path between
+two nodes, and what that shortest path is. It works by searching all the
+neighboring nodes before recursively expanding.
+
+Queues are first-in-first-out (FIFO) data structures used in this algorithm to
+find the shortest path. Potential candidates are added to the queue, and we
+want to check them in the order they are added.
+
+```python
+def search(name):
+    search_queue = deque()
+    search_queue += graph[name]
+    searched = set()
+    while search_queue:
+        person = search_queue.popleft()
+        if not person in searched:
+            if person_is_seller(person):
+                print(person + " is a mango seller!")
+                return True
+            else:
+                search_queue += graph[person]
+                searched.add(person)
+    return False
+
+search("you")
+```
+
+The runtime complexity of this algorithm is **O(V+E)**. It's at least **O(E)**
+because we might have to search the entire network (follow all of the edges)
+and it's also at least **O(V)** because we enqueue / dequeue a vertex once
+each.
+
+If you represent a list of tasks as dependencies in a graph, a topologically
+sorted list would be a valid ordering of the tasks. Additionally, a graph with
+no cycles is called a tree.

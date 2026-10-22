@@ -17,6 +17,7 @@ Notes on the many algorithm books I recently acquired.
     * [Quicksort](#quicksort)
     * [Hash tables](#hash-tables)
     * [Breadth first search](#breadth-first-search)
+    * [Trees](#trees)
 
 
 ## Grokking Algorithms
@@ -190,3 +191,55 @@ each.
 If you represent a list of tasks as dependencies in a graph, a topologically
 sorted list would be a valid ordering of the tasks. Additionally, a graph with
 no cycles is called a tree.
+
+
+### Trees
+
+Trees are a type of graph with no cycles. More precisely, they are connected
+acyclic graphs. There are many types of trees used for lots of different
+algorithms.
+
+**Rooted trees** are trees that have one node that leads to all other nodes.
+Nodes in a rooted tree can have a parent and children. The only node with no
+parent is the *root node*. Nodes with no children are called *leaf nodes*.
+
+File directories are an example of trees (ignoring symlinks). BFS is an
+algorithm that traverses every node in a graph, so we can use it for traversing
+every file in a directory tree. An important distinction to the previous BFS
+algorithm is that we don't need to check if we've seen a node twice because a
+tree does not have cycles.
+
+If we change our function to use recursion like so:
+
+```python
+from os import listdir
+from os.path import isfile, join
+
+def printnames(dir):
+    for file in sorted(listdir(dir)):
+        fullpath = join(dir, file)
+        if isfile(fullpath):
+            print(file)
+        else:
+            printnames(fullpath)
+
+printnames("pics")
+```
+
+It prints the files in a different order because this is a **depth-first
+search** algorithm. As soon as we find a directory, we recursively process that
+directory, where previously we would add it to a queue for later processing.
+
+BFS and DFS are similar algorithms that traverse every node in a graph, however
+DFS cannot find the shortest path. One other use for DFS is for finding a
+topological sort.
+
+**Binary trees** are a special type of **rooted tree** where nodes can have at
+most two children. Traditionally these children are called left child and right
+child.
+
+**Huffman coding** is an example of binary trees. It is a compression algorithm
+that uses the frequency of letters to determine a variable length binary
+representation (so more frequent letters have fewer bits). A binary tree is the
+map between letters and bits. Each letter sits at a leaf node. Traversing left
+is a `0` and right is a `1`.

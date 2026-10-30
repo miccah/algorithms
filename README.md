@@ -18,6 +18,7 @@ Notes on the many algorithm books I recently acquired.
     * [Hash tables](#hash-tables)
     * [Breadth first search](#breadth-first-search)
     * [Trees](#trees)
+    * [Balanced trees](#balanced-trees)
 
 
 ## Grokking Algorithms
@@ -243,3 +244,29 @@ that uses the frequency of letters to determine a variable length binary
 representation (so more frequent letters have fewer bits). A binary tree is the
 map between letters and bits. Each letter sits at a leaf node. Traversing left
 is a `0` and right is a `1`.
+
+
+### Balanced trees
+
+This section starts out by explaining that sorted arrays are *great* at finding
+values, but insertion is slow, and linked lists are the opposite. The goal is
+to get the best of both worlds. We want a search that is *O(log n)* and an
+insert that is faster than *O(n)*, which a balanced binary search tree (BST)
+gives us.
+
+A BST is a binary tree where the left child is always less than the node and
+the right child is always greater than the node. The performance of this tree
+depends on it being balanced. More accurately, we want the tree to be balanced
+so that there are fewer steps to reach all nodes. A very unbalanced binary tree
+takes linear time to search.
+
+**AVL trees** are a type of self-balancing BST. It achieves this through
+*rotations*. A rotation reorganizes a sub-tree so that it is balanced while
+maintaining the BST properties of order. A simple example of A->B->C would get
+rotated to A<-B->C, where **B** is now the root node instead of **A**.
+
+The AVL tree needs to keep track of some additional metadata to know when to
+rotate. Each node has either a *balance factor* or *height* that it tracks. The
+balance factor is the value of right nodes minus left nodes in a tree, which
+can be recursively calculated. When the balance factor exceeds ±1, it's time to
+rebalance. Then the new balance factor propogates up the tree.

@@ -270,3 +270,12 @@ rotate. Each node has either a *balance factor* or *height* that it tracks. The
 balance factor is the value of right nodes minus left nodes in a tree, which
 can be recursively calculated. When the balance factor exceeds ±1, it's time to
 rebalance. Then the new balance factor propogates up the tree.
+
+A **splay tree** is a tree that changes its root node to be the last node you
+looked up, so recently accessed data is faster to access. Splay trees are not
+always balanced, but the average search time is *O(log n)*.
+
+**B-trees** are a generalized form of a binary tree, often used for building
+databases by taking advantage of colocated data. B-trees are shaped like so:
+the root node has one key and two children. The next layer has two keys and
+three children each. The next, three keys and four children each, and so on.

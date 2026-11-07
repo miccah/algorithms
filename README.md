@@ -279,3 +279,29 @@ always balanced, but the average search time is *O(log n)*.
 databases by taking advantage of colocated data. B-trees are shaped like so:
 the root node has one key and two children. The next layer has two keys and
 three children each. The next, three keys and four children each, and so on.
+
+```mermaid
+flowchart TD
+    A["50"]
+
+    A --> B["20 | 35"]
+    A --> C["70 | 85"]
+
+    B --> D["5 | 10"]
+    B --> E["25 | 30"]
+    B --> F["40 | 45"]
+
+    C --> G["55 | 60"]
+    C --> H["75 | 80"]
+    C --> I["90 | 95"]
+
+    style A fill:#2563eb,color:#fff,stroke:#1e40af
+    style B fill:#0d9488,color:#fff,stroke:#0f766e
+    style C fill:#0d9488,color:#fff,stroke:#0f766e
+    style D fill:#16a34a,color:#fff,stroke:#166534
+    style E fill:#16a34a,color:#fff,stroke:#166534
+    style F fill:#16a34a,color:#fff,stroke:#166534
+    style G fill:#16a34a,color:#fff,stroke:#166534
+    style H fill:#16a34a,color:#fff,stroke:#166534
+    style I fill:#16a34a,color:#fff,stroke:#166534
+```

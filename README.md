@@ -19,6 +19,7 @@ Notes on the many algorithm books I recently acquired.
     * [Breadth first search](#breadth-first-search)
     * [Trees](#trees)
     * [Balanced trees](#balanced-trees)
+    * [Dijkstra's Algorithm](#dijkstras-algorithm)
 
 
 ## Grokking Algorithms
@@ -305,3 +306,47 @@ flowchart TD
     style H fill:#16a34a,color:#fff,stroke:#166534
     style I fill:#16a34a,color:#fff,stroke:#166534
 ```
+
+
+### Dijkstra's Algorithm
+
+Breadth first search finds the shortest number of edges between two nodes in a
+graph. Dijkstra's algorithm finds the shortest weighted path between two nodes,
+where each edge can have any non-negative weight. The graph must also not
+contain any cycles.
+
+There are four steps:
+
+1. Find the "cheapest" node. This is the node you can get to with the least
+   value.
+2. Update the costs of the out-neighbors of this node.
+3. Repeat this for all nodes in the graph.
+4. Calculate the final path.
+
+
+```python
+def find_lowest_cost_node(costs):
+    lowest_cost = math.inf
+    lowest_cost_node = None
+    for node in costs:
+        cost = costs[node]
+        if cost < lowest_cost and node not in processed:
+            lowest_cost = cost
+            lowest_cost_node = node
+    return lowest_cost_node
+
+node = find_lowest_cost_node(costs)
+while node is not None:
+    cost = costs[node]
+    neighbors = graph[node]
+    for n in neighbors.keys():
+        new_cost = cost + neighbors[n]
+        if costs[n] > new_cost:
+            costs[n] = new_cost
+            parents[n] = node
+    processed.add(node)
+    node = find_lowest_cost_node(costs)
+```
+
+This code example can be improved with the use of priority queues, instead of
+iterating over each node to find the lowest cost one.

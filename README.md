@@ -20,6 +20,8 @@ Notes on the many algorithm books I recently acquired.
     * [Trees](#trees)
     * [Balanced trees](#balanced-trees)
     * [Dijkstra's Algorithm](#dijkstras-algorithm)
+    * [Greedy algorithms](#greedy-algorithms)
+    * [Dynamic programming](#dynamic-programming)
 
 
 ## Grokking Algorithms
@@ -350,3 +352,67 @@ while node is not None:
 
 This code example can be improved with the use of priority queues, instead of
 iterating over each node to find the lowest cost one.
+
+
+### Greedy algorithms
+
+Greedy algorithms are simple algorithms that always take the locally optimal
+solution at each step. This sometimes ends up being the optimal solution (like
+for the class-scheduling problem), and sometimes it isn't (like for the
+knapsack problem).
+
+Greedy algorithms can be used as **approximation algorithms** that get a *good
+enough* solution to a problem much faster (like the set covering problem).
+
+Most NP-hard problems will use approximation algorithms to solve them
+practically.
+
+
+### Dynamic programming
+
+Dynamic programming solves small subproblems that builds up to solving the
+entire problem. A classic example of this is solving the knapsack problem.
+
+The book walks through how to do this using a grid where one axis is the
+knapsack size and the other is the item. For each cell, you calculate the
+maximum value by either taking the previous item's maximum value for that
+weight, or the current item's value plus the value of the remaining space.
+
+Dynamic programming only works when each subproblem is discrete and does not
+depend on other subproblems. It's only useful when you want to optimize
+something given a constraint.
+
+**Example:**
+
+* Water: 3 lb, 10 value
+* Book: 1 lb, 3 value
+* Food: 2 lb, 9 value
+* Jacket: 2 lb, 5 value
+* Camera: 1 lb, 6 value
+
+|            | **1 lb** | **2 lb** | **3 lb** | **4 lb** | **5 lb** | **6 lb** |
+|------------|----------|----------|----------|----------|----------|----------|
+| **water**  | 0        | 0        | 10 (w)   | 10 (w)   | 10 (w)   | 10 (w)   |
+| **book**   | 3 (b)    | 3 (b)    | 10 (w)   | 13 (wb)  | 13 (wb)  | 13 (wb)  |
+| **food**   | 3 (b)    | 9 (f)    | 12 (bf)  | 13 (wb)  | 19 (wf)  | 22 (wbf) |
+| **jacket** | 3 (b)    | 9 (f)    | 12 (bf)  | 14 (fj)  | 19 (wf)  | 22 (wbf) |
+| **camera** | 6 (c)    | 9 (f)    | 15 (fc)  | 18 (bfc) | 20 (fjc) | **25 (wfc)** |
+
+Dynamic programming typically follows this shape, but it's not always the same
+algorithm. The book goes on to use *longest common substring* and *largest
+common subsequence* as examples.
+
+For the longest common substring problem, one axis is the letters of one word
+and the other axis is the letters of the other word. For each cell, take the
+value of the cell to the upper left and add one if the letter match. In this
+example, the optimal solution is not the lower right cell.
+
+**Example:** Longest common subsequence of "blue" and "clues"
+
+|       | **B** | **L** | **U** | **E** |
+|-------|-------|-------|-------|-------|
+| **C** |   0   |   0   |   0   |   0   |
+| **L** |   0   |   1   |   0   |   0   |
+| **U** |   0   |   0   |   2   |   0   |
+| **E** |   0   |   0   |   0   | **3** |
+| **S** |   0   |   0   |   0   |   0   |

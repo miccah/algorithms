@@ -23,6 +23,7 @@ Notes on the many algorithm books I recently acquired.
     * [Greedy algorithms](#greedy-algorithms)
     * [Dynamic programming](#dynamic-programming)
     * [K-nearest neighbors](#k-nearest-neighbors)
+    * [Some other algorithms](#some-other-algorithms)
 
 
 ## Grokking Algorithms
@@ -435,3 +436,24 @@ k-nearest neighbors and take the average of their ratings for the movie.
 This naturally leads into *machine learning*, which involves gathering data,
 cleaning it, extract features, then training a model. It's typical to use 90%
 of your data to train and 10% to validate.
+
+
+### Some other algorithms
+
+The book wraps up by listing off some other data structures and algorithms that
+weren't covered:
+
+* **Linear regression** - fit a line to a collection of points
+* **Inverted indexes** - a hash table of words to indices (or places they appear);
+  useful for search engines
+* **Fourier transform** - convert between time and frequency domains
+* **Parallel algorithms** - a general category of algorithms that take
+  advantage of parallelism (like a version of quicksort that can run in $O(n)$
+  time)
+* **Map/reduce** - a distributed algorithm to handle extremely large amounts of
+  data
+* **Bloom filters and HyperLogLog** - probabilistic data structures!
+* **HTTPS and the Diffie–Hellman key exchange** - cryptography! (and a [book recommendation](https://www.manning.com/books/real-world-cryptography))
+* **Locality-sensitive hashing** - simhash will generate similar hashes for inputs that are similar, which is sometimes useful
+* **Min heaps and priority queues** - data structure built using trees where the root is always the minimum value (which is useful for building priority queues)
+* **Linear programming** - used to maximize something given some linear constraints; this is a very powerful framework for optimizations

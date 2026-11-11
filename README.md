@@ -39,7 +39,7 @@ me, because it assumes absolutely no previous knowledge of algorithms
 Binary search is an algorithm that efficiently finds an element in a sorted
 list. It works by choosing the midpoints and comparing to the element,
 eliminating half the search space with each step, which means it runs in
-**O(log n)** time.
+$O(\log n)$ time.
 
 ```py
 # Copied from the book.
@@ -70,13 +70,13 @@ print(binary_search(my_list, -1)) # => None
 
 The traveling salesperson is a classic problem in computer science, where a
 "salesperson" needs to visit "cities" and travel the fewest "miles." Solving it
-(perfectly) takes **O(n!)** time because we need to check every possible
+(perfectly) takes $O(n!)$ time because we need to check every possible
 combination of city orders.
 
 
 ### Selection Sort
 
-Selection sort is an **O(n²)** algorithm to sort an array. It works by
+Selection sort is an $O(n^2)$ algorithm to sort an array. It works by
 iterating through the list to *select* the lowest (or highest) element and
 putting it in a new list.
 
@@ -106,7 +106,7 @@ print(selectionSort([5, 3, 6, 2, 10]))
 
 ### Quicksort
 
-Quicksort is an (average) **O(n log n)** algorithm to sort an array. It
+Quicksort is an (average) $O(n \log n)$ algorithm to sort an array. It
 utilizes recursion to divide a list in half and sort the smaller copies.
 
 1. Pick a pivot
@@ -131,16 +131,16 @@ def quicksort(array):
 print(quicksort([10, 5, 2, 3]))
 ```
 
-On average, quicksort is an **O(n log n)** algorithm. In the worst case, it is
-**O(n²)** (such as a poorly chosen pivot on a sorted array, or an array with
+On average, quicksort is an $O(n \log n)$ algorithm. In the worst case, it is
+$O(n²)$ (such as a poorly chosen pivot on a sorted array, or an array with
 all of the same elements). The author compares quicksort with mergesort, which
-is also an **O(n log n)** algorithm, but it is usually slower because of the
+is also an $O(n log n)$ algorithm, but it is usually slower because of the
 constants (which aren't written in big-O notation).
 
 
 ### Hash tables
 
-The book covers hash tables here and how they are **O(1)** on average for all
+The book covers hash tables here and how they are $O(1)$ on average for all
 types of access. It works by hashing the input to a consistent value for
 constant time lookup. It didn't go into too much detail about how they work
 under the hood, but the hash is used to index a linked-list, which the item
@@ -189,9 +189,9 @@ def search(name):
 search("you")
 ```
 
-The runtime complexity of this algorithm is **O(V+E)**. It's at least **O(E)**
+The runtime complexity of this algorithm is $O(V+E)$. It's at least $O(E)$
 because we might have to search the entire network (follow all of the edges)
-and it's also at least **O(V)** because we enqueue / dequeue a vertex once
+and it's also at least $O(V)$ because we enqueue / dequeue a vertex once
 each.
 
 If you represent a list of tasks as dependencies in a graph, a topologically
@@ -255,8 +255,8 @@ is a `0` and right is a `1`.
 
 This section starts out by explaining that sorted arrays are *great* at finding
 values, but insertion is slow, and linked lists are the opposite. The goal is
-to get the best of both worlds. We want a search that is *O(log n)* and an
-insert that is faster than *O(n)*, which a balanced binary search tree (BST)
+to get the best of both worlds. We want a search that is $O(\log n)$ and an
+insert that is faster than $O(n)$, which a balanced binary search tree (BST)
 gives us.
 
 A BST is a binary tree where the left child is always less than the node and
@@ -278,7 +278,7 @@ rebalance. Then the new balance factor propogates up the tree.
 
 A **splay tree** is a tree that changes its root node to be the last node you
 looked up, so recently accessed data is faster to access. Splay trees are not
-always balanced, but the average search time is *O(log n)*.
+always balanced, but the average search time is $O(\log n)$.
 
 **B-trees** are a generalized form of a binary tree, often used for building
 databases by taking advantage of colocated data. B-trees are shaped like so:

@@ -22,6 +22,7 @@ Notes on the many algorithm books I recently acquired.
     * [Dijkstra's Algorithm](#dijkstras-algorithm)
     * [Greedy algorithms](#greedy-algorithms)
     * [Dynamic programming](#dynamic-programming)
+    * [K-nearest neighbors](#k-nearest-neighbors)
 
 
 ## Grokking Algorithms
@@ -416,3 +417,21 @@ example, the optimal solution is not the lower right cell.
 | **U** |   0   |   0   |   2   |   0   |
 | **E** |   0   |   0   |   0   | **3** |
 | **S** |   0   |   0   |   0   |   0   |
+
+
+### K-nearest neighbors
+
+K-nearest neighbors (KNN) is an algorithm to *classify* an item. It looks at
+the $k$ nearest neighbors to see which category it likely belongs to. In order
+to do that, it requires *feature extraction*, which maps a set of features into
+a vector (or a group of numbers). This allows you to compare two items by using
+the distance formula or cosine similarity (which compares the angle of two
+vectors instead of distance).
+
+KNN is also useful for *regressions*, or predicting a value given a new item.
+For example, if you want to predict how Alice will rate a movie, find her
+k-nearest neighbors and take the average of their ratings for the movie.
+
+This naturally leads into *machine learning*, which involves gathering data,
+cleaning it, extract features, then training a model. It's typical to use 90%
+of your data to train and 10% to validate.
